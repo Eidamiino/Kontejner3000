@@ -6,7 +6,8 @@ namespace Kontejner3000
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			Box box1=Helpers.GenerateRandomBox();
+			Console.WriteLine(box1);
 		}
 	}
 }
