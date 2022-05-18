@@ -25,17 +25,18 @@ namespace Kontejner3000
 
 				if (container.IsBoxTooBig(Boxes[hippo]))
 				{
-					Console.WriteLine("The container is full!");
 					Boxes.RemoveAt(hippo);
 					Containers.Add(container);
 					container.BoxesInside = Boxes;
 
+					Console.WriteLine("The container is full \n");
 					Container containerNew = CreateNewContainer();
 					AddBoxesUntilFull(containerNew,remainingBoxes,hippo);
 					break;
 				}
 				container.AddBox(Boxes[hippo]);
-				container.PrintFreeSpace();
+				Console.WriteLine(container.StringFreeSpace());
+				
 			}
 		}
 
