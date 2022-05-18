@@ -11,15 +11,13 @@ namespace Kontejner3000
 		static void Main(string[] args)
 		{
 			Container container=CreateNewContainer();
-
-			Console.WriteLine("List of boxes:");
-			AddBoxesUntilFull(container, AmountOfBoxes);
+			AddBoxesUntilFull(container, AmountOfBoxes,0);
 			Console.WriteLine($"Amount of boxes added: {Boxes.Count}");
-			Console.WriteLine(container);
+			
 		}
-		private static void AddBoxesUntilFull(Container container, int remainingBoxes)
+		private static void AddBoxesUntilFull(Container container, int remainingBoxes, int startingBox)
 		{
-			for (int hippo = 0; hippo < remainingBoxes; hippo++)
+			for (int hippo = startingBox; hippo < remainingBoxes; hippo++)
 			{
 				var box = Helpers.GenerateRandomBox();
 				Boxes.Add(box);
@@ -33,7 +31,7 @@ namespace Kontejner3000
 					container.BoxesInside = Boxes;
 
 					Container containerNew = CreateNewContainer();
-					AddBoxesUntilFull(containerNew,remainingBoxes-hippo);
+					AddBoxesUntilFull(containerNew,remainingBoxes,hippo);
 					break;
 				}
 				container.AddBox(Boxes[hippo]);
