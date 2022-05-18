@@ -8,8 +8,10 @@ namespace Kontejner3000
 		public Container(int weight, int height, int length, int width) : base(weight, height, length, width)
 		{
 			ContainerId = Guid.NewGuid();
+			BoxesInside = new List<Box>();
 		}
 		public Guid ContainerId{get;protected set;}
+		public List<Box> BoxesInside { get; set; }
 
 		public void PrintFreeSpace()
 		{
@@ -29,6 +31,10 @@ namespace Kontejner3000
 			if (box.Volume > this.Volume)
 				return true;
 			return false;
+		}
+		public override string ToString()
+		{
+			return ($"Container has inside {BoxesInside.Count} boxes");
 		}
 	}
 }
