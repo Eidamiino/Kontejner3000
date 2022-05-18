@@ -16,7 +16,7 @@ namespace Kontejner3000
 			for (int i = 0; i < boxes.Count; i++)
 			{
 				container.PrintFreeSpace();
-				if (container.IsBoxBigger(boxes[i]))
+				if (container.IsBoxTooBig(boxes[i]))
 				{
 					Console.WriteLine($"The container is full!");
 					break;
@@ -34,8 +34,12 @@ namespace Kontejner3000
 		{
 			this.Volume-=box.Volume;
 		}
+		public void RemoveBox(Box box)
+		{
+			this.Volume += box.Volume;
+		}
 
-		public bool IsBoxBigger(Box box)
+		public bool IsBoxTooBig(Box box)
 		{
 			if (box.Volume > this.Volume)
 				return true;

@@ -5,10 +5,12 @@ namespace Kontejner3000
 {
 	internal class Program
 	{
+		public const int AmountOfBoxes = 10;
 		public static List<Box> Boxes = new List<Box>();
 		static void Main(string[] args)
 		{
-			for (int hroch = 0; hroch < 20; hroch++)
+			Console.WriteLine("List of boxes:");
+			for (int hroch = 0; hroch < AmountOfBoxes; hroch++)
 			{
 				var box = Helpers.GenerateRandomBox();
 				Boxes.Add(box);
@@ -16,6 +18,7 @@ namespace Kontejner3000
 			}
 			Container container = new Container(1000,10,100,100);
 
+			Console.WriteLine("Adding boxes:");
 			Container.AddBoxesUntilFull(container, Boxes);
 		}
 	}

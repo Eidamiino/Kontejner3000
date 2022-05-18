@@ -10,7 +10,7 @@ namespace Kontejner3000
 		public Guid BoxId { get; protected set; }
 		public override string ToString()
 		{
-			return ($"Box has {Weight}kg and a volume of {Volume}cm3\nID:{BoxId}");
+			return ($"Box has {Weight}kg and a volume of {Volume}cm3");
 		}
 	}
 }
