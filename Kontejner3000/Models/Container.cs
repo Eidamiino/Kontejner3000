@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Kontejner3000
@@ -10,21 +10,6 @@ namespace Kontejner3000
 			ContainerId = Guid.NewGuid();
 		}
 		public Guid ContainerId{get;protected set;}
-
-		public static void AddBoxesUntilFull(Container container,List<Box> boxes)
-		{
-			for (int i = 0; i < boxes.Count; i++)
-			{
-				container.PrintFreeSpace();
-				if (container.IsBoxTooBig(boxes[i]))
-				{
-					Console.WriteLine($"The container is full!");
-					break;
-				}
-
-				container.AddBox(boxes[i]);
-			}
-		}
 
 		public void PrintFreeSpace()
 		{
