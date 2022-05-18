@@ -1,20 +1,21 @@
-﻿namespace Kontejner3000
+namespace Kontejner3000
 {
 	public abstract class StorageBase
 	{
 		public StorageBase(int weight, int height, int length, int width)
 		{
-			Weight=weight;
-			Height=height;
-			Length=length;
-			Width=width;
-			Volume = height * length * width;
+			Weight = weight;
+			Height = height;
+			Length = length;
+			Width = width;
+			AvailableVolume = Volume = height * length * width;
 		}
 
-		public int Weight { get; protected set; }
-		public int Height { get; protected set; }
-		public int Length { get; protected set; }
-		public int Width { get; protected set; }
-		public double Volume { get; protected set; }
+		public int Weight { get; private set; }
+		public int Height { get; private set; }
+		public int Length { get; private set; }
+		public int Width { get; private set; }
+		public double Volume { get; private set; }
+		public double AvailableVolume { get; protected set; }
 	}
-}	
+}

@@ -13,22 +13,22 @@ namespace Kontejner3000
 		public Guid ContainerId{get;protected set;}
 		public List<Box> BoxesInside { get; set; }
 
-		public void PrintFreeSpace()
+		public string StringFreeSpace()
 		{
-			Console.WriteLine($"Current free space in container: {this.Volume}");
+			return $"Current free space in container: {this.AvailableVolume}";
 		}
 		public void AddBox(Box box)
 		{
-			this.Volume-=box.Volume;
+			this.AvailableVolume-=box.Volume;
 		}
 		public void RemoveBox(Box box)
 		{
-			this.Volume += box.Volume;
+			this.AvailableVolume += box.Volume;
 		}
 
 		public bool IsBoxTooBig(Box box)
 		{
-			if (box.Volume > this.Volume)
+			if (box.Volume > this.AvailableVolume)
 				return true;
 			return false;
 		}
