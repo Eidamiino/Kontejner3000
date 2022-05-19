@@ -28,32 +28,37 @@ namespace Kontejner3000
 			for (int i = startingBox; i < remainingBoxes; i++)
 			{
 				Box box;
-				if (inputBox == null)
-					box = Helpers.GenerateRandomBox();
-				else
-					box = inputBox;
+				box = GetBox(inputBox);
 				Boxes.Add(box);
 				//Console.WriteLine(box);
-
-				if (container.IsBoxTooBig(Boxes[i]))
+				if (container.IsBoxTooBig(box))
 				{
 					//Console.WriteLine("The container is full \n");
 					Box remainedBox = box;
-					Boxes.RemoveAt(i);
+					Boxes.Remove(box);
 					AddBoxesUntilFull(remainingBoxes,i,remainedBox);
 					break;
 				}
-				container.AddBox(Boxes[i]);
-				container.AddWeight(box.Weight);
+				container.AddBox(box);
+				
 				//Console.WriteLine(container.GetFreeSpace());
 				inputBox = null;
 			}
 		}
 
+		private static Box GetBox(Box inputBox)
+		{
+			Box box;
+			if (inputBox == null)
+				box = Helpers.GenerateRandomBox();
+			else
+				box = inputBox;
+			return box;
+		}
+
 		private static Container CreateNewContainer()
 		{
-			Container container = new Container(1000, 10, 100, 100);
-			return container;
+			return new Container(1000, 10, 100, 100); ;
 		}
 	}
 }

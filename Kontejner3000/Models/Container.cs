@@ -10,8 +10,10 @@ namespace Kontejner3000
 		public Container(int weight, int height, int length, int width) : base(weight, height, length, width)
 		{
 			BoxesInside = new List<Box>();
+			AvailableVolume = Volume;
 		}
-		private List<Box> BoxesInside { get; set; }
+		public double AvailableVolume { get; protected set; }
+		private List<Box> BoxesInside { get; }
 		public List<Box> GetContent()
 		{
 			return BoxesInside.ToList();
@@ -20,17 +22,25 @@ namespace Kontejner3000
 		{
 			return $"Current free space in container: {AvailableVolume}";
 		}
-		public void AddBox(Box box)
+		public bool AddBox(Box box)
 		{
+			if (IsBoxTooBig(box))
+				return false;
+
 			BoxesInside.Add(box);
 			AvailableVolume -= box.Volume;
+			AddWeight(box.Weight);
+			return true;
 		}
-		public void RemoveBox(Box box, int index)
+		public bool RemoveBox(Box box)
 		{
-			BoxesInside.RemoveAt(index);
-			AvailableVolume += box.Volume;
-		}
+			if (!BoxesInside.Contains(box))
+				return false;
 
+			BoxesInside.Remove(box);
+			AvailableVolume += box.Volume;
+			return true;
+		}
 		public bool IsBoxTooBig(Box box)
 		{
 			return box.Volume > AvailableVolume;
@@ -41,7 +51,7 @@ namespace Kontejner3000
 		}
 		public void AddContainerInfoIntoTable(ConsoleTable table)
 		{
-			table.AddRow($"{StorageId}",$"{BoxesInside.Count}",$"{Weight}");
+			table.AddRow($"{StorageId}", $"{BoxesInside.Count}", $"{Weight} kg");
 		}
 	}
 }

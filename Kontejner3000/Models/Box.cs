@@ -9,7 +9,7 @@ namespace Kontejner3000
 		}
 		public override string ToString()
 		{
-			return ($"Box has {Weight}kg and a volume of {AvailableVolume}cm3");
+			return ($"Box has {Weight}kg and a volume of {Volume}cm3");
 		}
 	}
 }
