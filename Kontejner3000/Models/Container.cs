@@ -38,5 +38,16 @@ namespace Kontejner3000
 		{
 			return ($"Container has inside {BoxesInside.Count} boxes");
 		}
+
+		public int GetBoxesWeight()
+		{
+			int sum = 0;
+			foreach (Box box in BoxesInside)
+			{
+				sum += box.Weight;
+			}
+			return sum;
+		}
+
 	}
 }

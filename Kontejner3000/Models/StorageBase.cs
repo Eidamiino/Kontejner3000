@@ -14,11 +14,15 @@ namespace Kontejner3000
 			AvailableVolume = Volume = height * length * width;
 		}
 		public Guid StorageId { get; }
-		public int Weight { get; }
+		public int Weight { get; private set; }
 		public int Height { get; }
 		public int Length { get; }
 		public int Width { get; }
 		public double Volume { get; }
 		public double AvailableVolume { get; protected set; }
+		public void AddWeight(int addedWeight)
+		{
+			Weight += addedWeight;
+		}
 	}
 }

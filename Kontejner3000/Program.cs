@@ -12,11 +12,7 @@ namespace Kontejner3000
 		{
 			Box inputBox = null;
 			AddBoxesUntilFull(AmountOfBoxes,0, inputBox);
-			foreach (var con in Containers)
-			{
-				Console.WriteLine($"Container {con.StorageId} contains {con.GetContent().Count} boxes");
-			}
-			
+
 		}
 		private static void AddBoxesUntilFull(int remainingBoxes, int startingBox, Box inputBox)
 		{
@@ -41,6 +37,7 @@ namespace Kontejner3000
 					break;
 				}
 				container.AddBox(Boxes[i]);
+				container.AddWeight(box.Weight);
 				Console.WriteLine(container.GetFreeSpace());
 				inputBox = null;
 			}
