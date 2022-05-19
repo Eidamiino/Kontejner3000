@@ -13,12 +13,12 @@ namespace Kontejner3000
 			Width = width;
 			AvailableVolume = Volume = height * length * width;
 		}
-		public Guid StorageId { get; private set; }
-		public int Weight { get; private set; }
-		public int Height { get; private set; }
-		public int Length { get; private set; }
-		public int Width { get; private set; }
-		public double Volume { get; private set; }
+		public Guid StorageId { get; }
+		public int Weight { get; }
+		public int Height { get; }
+		public int Length { get; }
+		public int Width { get; }
+		public double Volume { get; }
 		public double AvailableVolume { get; protected set; }
 	}
 }

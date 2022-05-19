@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Kontejner3000
 {
@@ -9,8 +10,11 @@ namespace Kontejner3000
 		{
 			BoxesInside = new List<Box>();
 		}
-		public List<Box> BoxesInside { get; set; }
-
+		private List<Box> BoxesInside { get; set; }
+		public List<Box> GetContent()
+		{
+			return BoxesInside.ToList();
+		}
 		public string GetFreeSpace()
 		{
 			return $"Current free space in container: {AvailableVolume}";

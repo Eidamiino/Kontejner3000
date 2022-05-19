@@ -14,13 +14,14 @@ namespace Kontejner3000
 			AddBoxesUntilFull(AmountOfBoxes,0, inputBox);
 			foreach (var con in Containers)
 			{
-				Console.WriteLine(con.BoxesInside.Count);
+				Console.WriteLine($"Container {con.StorageId} contains {con.GetContent().Count} boxes");
 			}
 			
 		}
 		private static void AddBoxesUntilFull(int remainingBoxes, int startingBox, Box inputBox)
 		{
 			Container container = CreateNewContainer();
+			Containers.Add(container);
 			for (int i = startingBox; i < remainingBoxes; i++)
 			{
 				Box box;
@@ -36,7 +37,6 @@ namespace Kontejner3000
 					Console.WriteLine("The container is full \n");
 					Box remainedBox = box;
 					Boxes.RemoveAt(i);
-					Containers.Add(container);
 					AddBoxesUntilFull(remainingBoxes,i,remainedBox);
 					break;
 				}
