@@ -7,30 +7,28 @@ namespace Kontejner3000
 	{
 		public Container(int weight, int height, int length, int width) : base(weight, height, length, width)
 		{
-			ContainerId = Guid.NewGuid();
 			BoxesInside = new List<Box>();
 		}
-		public Guid ContainerId{get;protected set;}
 		public List<Box> BoxesInside { get; set; }
 
-		public string StringFreeSpace()
+		public string GetFreeSpace()
 		{
-			return $"Current free space in container: {this.AvailableVolume}";
+			return $"Current free space in container: {AvailableVolume}";
 		}
 		public void AddBox(Box box)
 		{
-			this.AvailableVolume-=box.Volume;
+			BoxesInside.Add(box);
+			AvailableVolume -=box.Volume;
 		}
-		public void RemoveBox(Box box)
+		public void RemoveBox(Box box, int index)
 		{
-			this.AvailableVolume += box.Volume;
+			BoxesInside.RemoveAt(index);
+			AvailableVolume += box.Volume;
 		}
 
 		public bool IsBoxTooBig(Box box)
 		{
-			if (box.Volume > this.AvailableVolume)
-				return true;
-			return false;
+			return box.Volume > AvailableVolume;
 		}
 		public override string ToString()
 		{

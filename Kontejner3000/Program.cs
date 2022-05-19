@@ -10,33 +10,39 @@ namespace Kontejner3000
 		public static List<Container> Containers = new List<Container>();
 		static void Main(string[] args)
 		{
-			Container container=CreateNewContainer();
-			AddBoxesUntilFull(container, AmountOfBoxes,0);
-			Console.WriteLine($"Amount of boxes added: {Boxes.Count}");
+			Box inputBox = null;
+			AddBoxesUntilFull(AmountOfBoxes,0, inputBox);
+			foreach (var con in Containers)
+			{
+				Console.WriteLine(con.BoxesInside.Count);
+			}
 			
 		}
-		private static void AddBoxesUntilFull(Container container, int remainingBoxes, int startingBox)
+		private static void AddBoxesUntilFull(int remainingBoxes, int startingBox, Box inputBox)
 		{
-			for (int hippo = startingBox; hippo < remainingBoxes; hippo++)
+			Container container = CreateNewContainer();
+			for (int i = startingBox; i < remainingBoxes; i++)
 			{
-				var box = Helpers.GenerateRandomBox();
+				Box box;
+				if (inputBox == null)
+					box = Helpers.GenerateRandomBox();
+				else
+					box = inputBox;
 				Boxes.Add(box);
 				Console.WriteLine(box);
 
-				if (container.IsBoxTooBig(Boxes[hippo]))
+				if (container.IsBoxTooBig(Boxes[i]))
 				{
-					Boxes.RemoveAt(hippo);
-					Containers.Add(container);
-					container.BoxesInside = Boxes;
-
 					Console.WriteLine("The container is full \n");
-					Container containerNew = CreateNewContainer();
-					AddBoxesUntilFull(containerNew,remainingBoxes,hippo);
+					Box remainedBox = box;
+					Boxes.RemoveAt(i);
+					Containers.Add(container);
+					AddBoxesUntilFull(remainingBoxes,i,remainedBox);
 					break;
 				}
-				container.AddBox(Boxes[hippo]);
-				Console.WriteLine(container.StringFreeSpace());
-				
+				container.AddBox(Boxes[i]);
+				Console.WriteLine(container.GetFreeSpace());
+				inputBox = null;
 			}
 		}
 
