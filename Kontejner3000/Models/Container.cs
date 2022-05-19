@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleTables;
 
 namespace Kontejner3000
 {
-	public class Container:StorageBase
+	public class Container : StorageBase
 	{
 		public Container(int weight, int height, int length, int width) : base(weight, height, length, width)
 		{
@@ -22,7 +23,7 @@ namespace Kontejner3000
 		public void AddBox(Box box)
 		{
 			BoxesInside.Add(box);
-			AvailableVolume -=box.Volume;
+			AvailableVolume -= box.Volume;
 		}
 		public void RemoveBox(Box box, int index)
 		{
@@ -38,16 +39,9 @@ namespace Kontejner3000
 		{
 			return ($"Container has inside {BoxesInside.Count} boxes");
 		}
-
-		public int GetBoxesWeight()
+		public void AddContainerInfoIntoTable(ConsoleTable table)
 		{
-			int sum = 0;
-			foreach (Box box in BoxesInside)
-			{
-				sum += box.Weight;
-			}
-			return sum;
+			table.AddRow($"{StorageId}",$"{BoxesInside.Count}",$"{Weight}");
 		}
-
 	}
 }

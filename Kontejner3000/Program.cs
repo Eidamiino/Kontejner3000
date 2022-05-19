@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ConsoleTables;
 
 namespace Kontejner3000
 {
@@ -12,6 +13,12 @@ namespace Kontejner3000
 		{
 			Box inputBox = null;
 			AddBoxesUntilFull(AmountOfBoxes,0, inputBox);
+			ConsoleTable table = new ConsoleTable("ContainerID", "Total Boxes", "Total Weight");
+			foreach (Container container in Containers)
+			{
+				container.AddContainerInfoIntoTable(table);
+			}
+			table.Write();
 
 		}
 		private static void AddBoxesUntilFull(int remainingBoxes, int startingBox, Box inputBox)
@@ -26,11 +33,11 @@ namespace Kontejner3000
 				else
 					box = inputBox;
 				Boxes.Add(box);
-				Console.WriteLine(box);
+				//Console.WriteLine(box);
 
 				if (container.IsBoxTooBig(Boxes[i]))
 				{
-					Console.WriteLine("The container is full \n");
+					//Console.WriteLine("The container is full \n");
 					Box remainedBox = box;
 					Boxes.RemoveAt(i);
 					AddBoxesUntilFull(remainingBoxes,i,remainedBox);
@@ -38,7 +45,7 @@ namespace Kontejner3000
 				}
 				container.AddBox(Boxes[i]);
 				container.AddWeight(box.Weight);
-				Console.WriteLine(container.GetFreeSpace());
+				//Console.WriteLine(container.GetFreeSpace());
 				inputBox = null;
 			}
 		}
