@@ -51,7 +51,7 @@ namespace Kontejner3000
 		}
 		public void AddContainerInfoIntoTable(ConsoleTable table)
 		{
-			table.AddRow($"{StorageId}", $"{BoxesInside.Count}", $"{Weight} kg");
+			table.AddRow($"{CustomId}", $"{BoxesInside.Count}", $"{Weight} kg");
 		}
 	}
 }
