@@ -7,7 +7,7 @@ namespace Kontejner3000
 	internal class Program
 	{
 		public const int ShipAmount = 6;
-		public const int AmountOfBoxes = 20;
+		public const int AmountOfBoxes = 100;
 		public static List<Box> Boxes = new List<Box>();
 		public static List<Container> Containers = new List<Container>();
 		static void Main(string[] args)
@@ -19,14 +19,6 @@ namespace Kontejner3000
 				container.AddContainerInfoIntoTable(table);
 			}
 			table.Write();
-
-			//jsou tri classy: container, lod, port (pristav)
-			//vytvori se novy port, v portu je *pocet* volnych mist ve kterych je *pocet* lodi
-			//v portu muzou lode mezi sebou containery uvnitr lodi prenaset (nejakou metodou)
-			//vsechna mista v portu jsou nahodny pocet metru vzdalena od sebe
-			//pri prenaseni containeru je potreba znat doba jakou prenos trval, jeden metr odpovida 1 milisekunde
-			//napr: mezi misty 1 a 2 je 100m a mezi 2 a 3 je 200m, takze prenos z 1 do 3 bude trvat 100 + 200 metru
-			//tyhle vzdalenosti jsou ulozene v listu ve tride port
 
 			Port port = new Port(ShipAmount);
 			port.ShipDistance = port.GetRandomArray(port.ShipDistance);
@@ -40,7 +32,7 @@ namespace Kontejner3000
 			port.Ships[0].AddContainer(Containers[1]);
 
 			//Console.WriteLine(port.Ships[2].ContainersInside.Count);
-			port.MoveContainer(0, 0, 2);
+			port.MoveContainer(0, 0, 3);
 			//Console.WriteLine(port.Ships[2].ContainersInside.Count);
 
 			//foreach (var distance in port.ShipDistance)

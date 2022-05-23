@@ -3,14 +3,6 @@ using System.Collections.Generic;
 
 namespace Kontejner3000
 {
-	//jsou tri classy: container, lod, port (pristav)
-	//vytvori se novy port, v portu je *pocet* volnych mist ve kterych je ShipAmount lodi
-	//v portu muzou lode mezi sebou containery uvnitr lodi prenaset (nejakou metodou)
-	//vsechna mista v portu jsou nahodny pocet metru vzdalena od sebe
-	//pri prenaseni containeru je potreba znat doba jakou prenos trval, jeden metr odpovida 1 milisekunde
-	//napr: mezi misty 1 a 2 je 100m a mezi 2 a 3 je 200m, takze prenos z 1 do 3 bude trvat 100 + 200 metru
-	//tyhle vzdalenosti jsou ulozene v listu ve tride port
-	//nemam tuseni jak mam samotne parkovaci misto lodi priradit AHHHAAA JA JE PRIRAZOVAT NEBUDU
 	public class Port
 	{
 		public int ShipAmount { get; set; }

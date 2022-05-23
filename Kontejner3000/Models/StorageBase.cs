@@ -5,7 +5,7 @@ namespace Kontejner3000
 {
 	public abstract class StorageBase
 	{
-		public List<string> CustomIds = new List<string>();
+		public static List<string> CustomIds = new List<string>();
 
 		public StorageBase(int weight, int height, int length, int width)
 		{
