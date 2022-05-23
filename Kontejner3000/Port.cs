@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 namespace Kontejner3000
 {
-	//kamo prisaham ze nam tady dali nejaky NP problem co to vole je pomoc
-
 	//jsou tri classy: container, lod, port (pristav)
 	//vytvori se novy port, v portu je *pocet* volnych mist ve kterych je ShipAmount lodi
 	//v portu muzou lode mezi sebou containery uvnitr lodi prenaset (nejakou metodou)

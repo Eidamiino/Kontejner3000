@@ -20,8 +20,6 @@ namespace Kontejner3000
 			}
 			table.Write();
 
-			//kamo prisaham ze nam tady dali nejaky NP problem co to vole je pomoc
-
 			//jsou tri classy: container, lod, port (pristav)
 			//vytvori se novy port, v portu je *pocet* volnych mist ve kterych je *pocet* lodi
 			//v portu muzou lode mezi sebou containery uvnitr lodi prenaset (nejakou metodou)
@@ -34,21 +32,21 @@ namespace Kontejner3000
 			port.ShipDistance = port.GetRandomArray(port.ShipDistance);
 
 			port.AddShips();
-			foreach (var ship in port.Ships)
-			{
-				Console.WriteLine(ship);
-			}
+			//foreach (var ship in port.Ships)
+			//{
+			//	Console.WriteLine(ship);
+			//}
 
 			port.Ships[0].AddContainer(Containers[1]);
 
-			Console.WriteLine(port.Ships[2].ContainersInside.Count);
+			//Console.WriteLine(port.Ships[2].ContainersInside.Count);
 			port.MoveContainer(0, 0, 2);
-			Console.WriteLine(port.Ships[2].ContainersInside.Count);
+			//Console.WriteLine(port.Ships[2].ContainersInside.Count);
 
-			foreach (var distance in port.ShipDistance)
-			{
-				Console.WriteLine($"hrosik {distance}");
-			}
+			//foreach (var distance in port.ShipDistance)
+			//{
+			//	Console.WriteLine($"hrosik {distance}");
+			//}
 
 
 
@@ -73,7 +71,9 @@ namespace Kontejner3000
 				if (!container.AddBox(box))
 				{
 					//Console.WriteLine("The container is full \n");
-					Box remainedBox = box;
+					Box remainedBox = null;
+					if (box.Volume < 100000)
+						remainedBox = box;
 					Boxes.Remove(box);
 					AddBoxesUntilFull(remainingBoxes, i, remainedBox);
 					break;
