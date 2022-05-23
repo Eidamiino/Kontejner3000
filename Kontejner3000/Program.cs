@@ -22,34 +22,10 @@ namespace Kontejner3000
 
 			Port port = new Port(ShipAmount);
 			port.ShipDistance = port.GetRandomArray(port.ShipDistance);
-
 			port.AddShips();
-			//foreach (var ship in port.Ships)
-			//{
-			//	Console.WriteLine(ship);
-			//}
-
 			port.Ships[0].AddContainer(Containers[1]);
 
-			//Console.WriteLine(port.Ships[2].ContainersInside.Count);
 			port.MoveContainer(0, 0, 3);
-			//Console.WriteLine(port.Ships[2].ContainersInside.Count);
-
-			//foreach (var distance in port.ShipDistance)
-			//{
-			//	Console.WriteLine($"hrosik {distance}");
-			//}
-
-
-
-
-
-
-
-
-
-
-
 		}
 		private static void AddBoxesUntilFull(int remainingBoxes, int startingBox, Box inputBox)
 		{
