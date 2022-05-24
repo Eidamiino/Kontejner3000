@@ -14,18 +14,24 @@ namespace Kontejner3000.Models
 			Ships = new Ship[ShipAmount];
 			ShipDistance = new int[ShipAmount - 1];
 		}
-		public bool MoveContainer(string containerId, Ship destination)
+		public bool MoveContainer(string containerId, string destination)
 		{
 			if (Container.ContainerIds.Contains(containerId) == false)
 				return false;
+			if (Ship.ShipIds.Contains(destination) == false)
+				return false;
+
 
 			int containerIndex = Container.ContainerIds.IndexOf(containerId);
 			Container container = Program.Containers[containerIndex];
 
+			int shipIndex = Ship.ShipIds.IndexOf(destination);
+			Ship ship = Ships[shipIndex];
 			Ship start = container.Location;
-			destination.AddContainer(container);
+
+			ship.AddContainer(container);
 			start.RemoveContainer(container);
-			container.Location = destination;
+			container.Location = ship;
 
 			return true;
 		}
@@ -52,7 +58,11 @@ namespace Kontejner3000.Models
 		public void AddShips()
 		{
 			for (int i = 0; i < ShipAmount; i++)
-				Ships[i] = new Ship(5000,10000, 10000, 10000);
+				Ships[i] = new Ship(5000, 10000, 10000, 10000);
+		}
+		public void AddShip(int i, Ship ship)
+		{
+			Ships[i] = ship;
 		}
 	}
 }

@@ -25,6 +25,7 @@ namespace Kontejner3000
 			foreach (var container in Program.Containers)
 			{
 				AddContainer(container);
+				container.Location = this;
 			}
 			return true;
 		}

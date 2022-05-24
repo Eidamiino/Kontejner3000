@@ -15,43 +15,49 @@ namespace Kontejner3000
 		{
 			AddBoxesUntilFull(AmountOfBoxes, 0, null);
 			Port port = new Port(ShipAmount);
-			Ship dock = new Ship(5000,10000, 10000, 10000);
 			port.ShipDistance = port.GetRandomArray(port.ShipDistance);
 			port.AddShips();
-			port.Ships[0].AddAllContainers();
+			port.Ships[1].AddAllContainers();
 
 			while (true)
 			{
 				Console.WriteLine($"Enter your choice:\n1. Print all containers\t\t2. Move container\t\t3. Unload container to dock");
+				Console.Write($"Your input: ");
 				int input = Convert.ToInt32(Console.ReadLine());
 				switch (input)
 				{
 					case 1:
 						{
-							ConsoleTable table = new ConsoleTable("ShipID","ContainerID", "Total Boxes", "Total Weight");
+							ConsoleTable table = new ConsoleTable("ShipID", "ContainerID", "Total Boxes", "Total Weight");
 							foreach (Container container in Containers)
 							{
 								Helpers.AddContainerInfoIntoTable(table, container);
 							}
 							table.Write();
+
+							Console.WriteLine($"All available ships:");
+							foreach (string id in Ship.ShipIds)
+							{
+								Console.WriteLine($"{id}");
+							}
 						}
 						break;
 					case 2:
 						{
-							string containerId;
+							string containerId, shipId;
 							do
 							{
-								Console.WriteLine($"Enter a containerID to unload:");
+								Console.WriteLine($"Enter a containerID to move:");
 								containerId = Console.ReadLine();
 							} while (Container.ContainerIds.Contains(containerId) == false);
 							do
 							{
-								Console.WriteLine($"Enter a containerID to unload:");
-								containerId = Console.ReadLine();
-							} while (Container.ContainerIds.Contains(containerId) == false);
+								Console.WriteLine($"Enter a shipIP to move container into:");
+								shipId = Console.ReadLine();
+							} while (Ship.ShipIds.Contains(shipId) == false);
 
-							port.MoveContainer(containerId, dock);
-							Console.WriteLine($"Container has been moved to dock!\n");
+							port.MoveContainer(containerId, shipId);
+							Console.WriteLine($"Container has been moved to selected ship!\n");
 						}
 						break;
 					case 3:
@@ -63,9 +69,14 @@ namespace Kontejner3000
 								containerId = Console.ReadLine();
 							} while (Container.ContainerIds.Contains(containerId) == false);
 
-							port.MoveContainer(containerId, dock);
+							port.MoveContainer(containerId, port.Ships[0].ShipId);
 							Console.WriteLine($"Container has been moved to dock!\n");
 						}
+						break;
+					default:
+					{
+						Console.WriteLine($"Zadej spravnou volbu z nabidky!!!");
+					}
 						break;
 				}
 			}
