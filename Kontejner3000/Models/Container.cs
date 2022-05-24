@@ -7,13 +7,20 @@ namespace Kontejner3000
 {
 	public class Container : StorageBase
 	{
+		public static List<string> ContainerIds = new List<string>();
+
 		public Container(int weight, int height, int length, int width) : base(weight, height, length, width)
 		{
 			BoxesInside = new List<Box>();
+			ContainerId = GetId(ContainerIds);
 			AvailableVolume = Volume;
+			Location = null;
 		}
 		public double AvailableVolume { get; protected set; }
+		public string ContainerId { get; }
 		private List<Box> BoxesInside { get; }
+		public Ship Location { get; set; }
+
 		public List<Box> GetContent()
 		{
 			return BoxesInside.ToList();
@@ -39,6 +46,7 @@ namespace Kontejner3000
 
 			BoxesInside.Remove(box);
 			AvailableVolume += box.Volume;
+			RemoveWeight(box.Weight);
 			return true;
 		}
 		public bool IsBoxTooBig(Box box)
@@ -48,10 +56,6 @@ namespace Kontejner3000
 		public override string ToString()
 		{
 			return ($"Container has inside {BoxesInside.Count} boxes");
-		}
-		public void AddContainerInfoIntoTable(ConsoleTable table)
-		{
-			table.AddRow($"{CustomId}", $"{BoxesInside.Count}", $"{Weight} kg");
 		}
 	}
 }

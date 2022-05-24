@@ -1,4 +1,5 @@
 using System;
+using ConsoleTables;
 
 namespace Kontejner3000
 {
@@ -17,6 +18,10 @@ namespace Kontejner3000
 			int width = GetRandom(1, 50);
 
 			return new Box(weight, height, length, width);
+		}
+		public static void AddContainerInfoIntoTable(ConsoleTable table, Container container)
+		{
+			table.AddRow($"{container.Location.ShipId}",$"{container.ContainerId}", $"{container.GetContent().Count}", $"{container.Weight} kg");
 		}
 	}
 }
